@@ -14,6 +14,12 @@ namespace Birko.TimeTracker.DbContext
         public DbSet<Birko.TimeTracker.Entities.Task> Tasks { get; set; }
         public DbSet<Birko.TimeTracker.Entities.Tag> Tags { get; set; }
 
+        public TimeTrackerDbContext()
+            :base();
+        {
+            Database.SetInitializer<TimeTrackerDbContext>(new CreateDatabaseIfNotExists<TimeTrackerDbContext>());
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
