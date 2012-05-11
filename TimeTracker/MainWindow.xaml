@@ -1,0 +1,25 @@
+﻿<Window x:Class="TimeTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="395" Width="612">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="75*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="198*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTask" ToolTip="Project name"/>
+        <TextBlock HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTags" ToolTip="Tags"/>
+        <Button Content="Switch task" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" VerticalAlignment="Stretch" Width="Auto"/>
+        <DataGrid HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Height="Auto" Width="Auto"/>
+        <Button Content="Stop Tracking" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" IsEnabled="False"/>
+
+    </Grid>
+</Window>
