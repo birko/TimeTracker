@@ -108,6 +108,10 @@
       <Project>{be3bae62-8d3a-499d-83f2-2b3001d8e8a9}</Project>
       <Name>Birko.TimeTracker.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Birko.TimeTracker.EntityManagement\Birko.TimeTracker.EntityManagement.csproj">
+      <Project>{a10d4dad-5408-446f-af4d-151d3f516e69}</Project>
+      <Name>Birko.TimeTracker.EntityManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Birko.TimeTracker.Tracker\Birko.TimeTracker.csproj">
       <Project>{58f3cfa7-869f-4b4d-b4e4-97e9d5ef3550}</Project>
       <Name>Birko.TimeTracker</Name>

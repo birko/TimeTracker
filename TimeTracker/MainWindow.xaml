@@ -15,11 +15,11 @@
             <RowDefinition Height="198*"/>
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTask" ToolTip="Project name"/>
-        <TextBlock HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTags" ToolTip="Tags"/>
-        <Button Content="Switch task" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" VerticalAlignment="Stretch" Width="Auto"/>
+        <TextBox HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTask" ToolTip="Project name" />
+        <TextBox HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTags" ToolTip="Tags"/>
+        <Button Content="Switch task" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" VerticalAlignment="Stretch" Width="Auto" Name="buttonSwitchTask" Click="buttonSwitchTask_Click"/>
         <DataGrid HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Height="Auto" Width="Auto"/>
-        <Button Content="Stop Tracking" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" IsEnabled="False"/>
+        <Button Content="Stop Tracking" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" IsEnabled="False" Name="buttonStopTracking" Click="buttonStopTracking_Click"/>
 
     </Grid>
 </Window>

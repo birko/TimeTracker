@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birko.TimeTracker.DbContext
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birko.TimeTracker", "Birko.TimeTracker.Tracker\Birko.TimeTracker.csproj", "{58F3CFA7-869F-4B4D-B4E4-97E9D5EF3550}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birko.TimeTracker.EntityManagement", "Birko.TimeTracker.EntityManagement\Birko.TimeTracker.EntityManagement.csproj", "{A10D4DAD-5408-446F-AF4D-151D3F516E69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -41,6 +43,16 @@ Global
 		{6BEA157B-ACB0-4410-BCA4-3989CE399973}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BEA157B-ACB0-4410-BCA4-3989CE399973}.Release|x64.ActiveCfg = Release|Any CPU
 		{6BEA157B-ACB0-4410-BCA4-3989CE399973}.Release|x86.ActiveCfg = Release|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Release|x64.ActiveCfg = Release|Any CPU
+		{A10D4DAD-5408-446F-AF4D-151D3F516E69}.Release|x86.ActiveCfg = Release|Any CPU
 		{AC5BC368-F61B-421E-A769-4403AD9F5AB6}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{AC5BC368-F61B-421E-A769-4403AD9F5AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC5BC368-F61B-421E-A769-4403AD9F5AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU

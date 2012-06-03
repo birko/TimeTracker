@@ -10,18 +10,15 @@ namespace Birko.TimeTracker.Entities
 {
     public class Task
     {
-        [Key]
-        [DatabaseGeneratedAttribute(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
         public Guid ID { get; set; }
-        [Required]
         public string Name { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
-        [ForeignKey("Category")]
-        public Guid CategoryID { get; set; }
-        public Category Category { get; set; }
-        public ICollection<Tag> Tags { get; set; }
-        [NotMappedAttribute]
+        public string Description { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? End { get; set; }
+        public Guid? CategoryID { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+
         public TimeSpan Duration 
         {
             get 
@@ -34,11 +31,11 @@ namespace Birko.TimeTracker.Entities
         {
             if (Start != null && End != null)
             {
-                return End - Start;
+                return End.Value - Start.Value;
             }
             else if (Start != null && End == null)
             {
-                return DateTime.Now - Start;
+                return DateTime.UtcNow - Start.Value;
             }
             else 
             {
