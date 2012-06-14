@@ -1,7 +1,11 @@
 ﻿<Window x:Class="TimeTracker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Birko_Timetracker_Entities="clr-namespace:Birko.TimeTracker.Entities;assembly=Birko.TimeTracker.Entities"
         Title="MainWindow" Height="395" Width="612">
+    <Window.Resources>
+        <Birko_Timetracker_Entities:Task x:Key="TasksSource"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="106*"/>
@@ -18,7 +22,12 @@
         <TextBox HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTask" ToolTip="Project name" />
         <TextBox HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTags" ToolTip="Tags"/>
         <Button Content="Switch task" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" VerticalAlignment="Stretch" Width="Auto" Name="buttonSwitchTask" Click="buttonSwitchTask_Click"/>
-        <DataGrid HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Height="Auto" Width="Auto"/>
+        <DataGrid ItemsSource="{Binding Mode=OneWay, Source={StaticResource TasksSource}}" HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Height="Auto" Width="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="columnDuration" Binding="{Binding Duration, Mode=OneWay}" Header="Time"/>
+                <DataGridTextColumn x:Name="columnFullName" Binding="{Binding FullName, Mode=OneWay}" Header="Task"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Content="Stop Tracking" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" IsEnabled="False" Name="buttonStopTracking" Click="buttonStopTracking_Click"/>
 
     </Grid>

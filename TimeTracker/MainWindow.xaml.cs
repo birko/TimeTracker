@@ -24,7 +24,7 @@ namespace TimeTracker
         public MainWindow()
         {
             InitializeComponent();
-            Birko.TimeTracker.DbContext.EntityManager manager  = new Birko.TimeTracker.DbContext.EntityManager();
+            Birko.TimeTracker.DbContext.EntityManager manager  = new Birko.TimeTracker.DbContext.EntityManager("Data Source=timetracker.sdf", "System.Data.SqlServerCe.4.0");
             this.tracker = new Birko.TimeTracker.Tracker(manager);
             
         }
