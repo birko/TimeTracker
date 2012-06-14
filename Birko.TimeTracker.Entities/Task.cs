@@ -27,6 +27,15 @@ namespace Birko.TimeTracker.Entities
             }
         }
 
+        public string FullName
+        {
+            get
+            {
+                string cat = (this.Category != null) ? this.Category.Name : "";
+                return (string.IsNullOrEmpty(cat)) ? this.Name : this.Name + "@" + cat;
+            }
+        }
+
         private TimeSpan GetDuration()
         {
             if (Start != null && End != null)
