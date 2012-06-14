@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.EntityClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,11 @@ namespace Birko.TimeTracker.DbContext
 {
     public class TaskManager : EntityManagement.TaskManager
     {
-        internal string ConnnectionString { get; set; }
         private TimeTrackerDbContext context = null;
 
         public TaskManager()
         {
-            // TODO: Complete member initialization
+            // TODO: Complete member initialization;
         }
 
         protected virtual TimeTrackerDbContext GetContext()
@@ -119,7 +119,7 @@ namespace Birko.TimeTracker.DbContext
 
         public override IEnumerable<Entities.Task> GetTasks()
         {
-            return this.GetContext().Tasks;
+            return this.GetContext().Tasks.Include("Category");
         }
 
         public override void Dispose()

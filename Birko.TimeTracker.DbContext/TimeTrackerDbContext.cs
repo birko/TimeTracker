@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Birko.TimeTracker.Entities;
+﻿using System.Data.Entity;
+using System.Data.EntityClient;
 
 namespace Birko.TimeTracker.DbContext
 {
@@ -15,7 +10,7 @@ namespace Birko.TimeTracker.DbContext
         public DbSet<Birko.TimeTracker.Entities.Tag> Tags { get; set; }
 
         public TimeTrackerDbContext()
-            :base()
+            : base("Birko.TimeTracker.DbContext.TimeTrackerDbContext")
         {
             Database.SetInitializer<TimeTrackerDbContext>(new CreateDatabaseIfNotExists<TimeTrackerDbContext>());
         }

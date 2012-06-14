@@ -9,10 +9,14 @@ namespace Birko.TimeTracker.DbContext
 {
     public class EntityManager: EntityManagement.EntityManager
     {
+        internal string ConnnectionString { get; set; }
+        internal string Provider { get; set; }
 
-        public EntityManager()
+        public EntityManager(string nameOrConnectionString, string provider)
         {
-
+            // TODO: Complete member initialization
+            this.ConnnectionString = nameOrConnectionString;
+            this.Provider = provider;
             using (TimeTrackerDbContext contex = new TimeTrackerDbContext())
             {
                 Console.WriteLine(contex.Database.Connection);

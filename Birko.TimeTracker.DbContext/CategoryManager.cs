@@ -12,6 +12,7 @@ namespace Birko.TimeTracker.DbContext
 
         public CategoryManager()
         {
+            // TODO: Complete member initialization
         }
 
         protected virtual TimeTrackerDbContext GetContext()
