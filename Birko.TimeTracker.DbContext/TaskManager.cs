@@ -119,7 +119,7 @@ namespace Birko.TimeTracker.DbContext
 
         public override IEnumerable<Entities.Task> GetTasks()
         {
-            return this.GetContext().Tasks.Include("Category");
+            return this.GetContext().Tasks.Include("Category").Include("Tags");
         }
 
         public override void Dispose()

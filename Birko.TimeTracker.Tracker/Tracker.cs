@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace Birko.TimeTracker
 {
+    public delegate void TaskStarted(Entities.Task task);
+    public delegate void TaskEnded(Entities.Task task);
+
     public class Tracker
     {
         public TimeTracker.Categories Categories { get; protected set; }
         public TimeTracker.Tags Tags { get; protected set; }
         public TimeTracker.Tasks Tasks { get; protected set; }
         public Birko.TimeTracker.Entities.Task ActiveTask { get; protected set; }
+        public event TaskStarted OnTaskStarted = null;
+        public event TaskEnded OnTaskEnded = null;
 
         protected EntityManagement.EntityManager EntityManager { get; set; }
 
@@ -34,15 +39,30 @@ namespace Birko.TimeTracker
 
         private void StartTask(Entities.Task task)
         {
-            task.Start = DateTime.UtcNow;
+            if (task.Start == null)
+            {
+                task.Start = DateTime.UtcNow;
+            }
             Entities.Task newTask = this.Tasks.SaveTask(task);
             this.ActiveTask = newTask;
+            if(OnTaskStarted != null)
+            {
+                this.OnTaskStarted(this.ActiveTask);
+            }
         }
 
         public void EndTask(Entities.Task task)
         {
             task.End = DateTime.UtcNow;
             this.Tasks.SaveTask(task);
+            if (task.ID == this.ActiveTask.ID)
+            {
+                this.ActiveTask = null;
+            }
+            if (OnTaskEnded != null)
+            {
+                this.OnTaskEnded(task);
+            }
         }
 
         public void TagTask(Entities.Task task, IEnumerable<Entities.Tag> tags)
