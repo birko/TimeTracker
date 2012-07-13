@@ -38,6 +38,8 @@ namespace Birko.TimeTracker.EntityManagement
 
         public abstract Entities.Task TagTask(Entities.Task task, IEnumerable<Entities.Tag> tags);
 
+        public abstract IEnumerable<Entities.Tag> GetTaskTags(Entities.Task task);
+
         public abstract void Dispose();
     }
 }

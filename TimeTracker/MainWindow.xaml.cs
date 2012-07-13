@@ -30,6 +30,12 @@ namespace TimeTracker
             this.tracker = new Birko.TimeTracker.Tracker(manager);
             this.tracker.OnTaskStarted += tracker_OnTaskStarted;
             this.tracker.OnTaskEnded += tracker_OnTaskEnded;
+            this.tracker.OnTaskDeleted += tracker_OnTaskDeleted;
+        }
+
+        void tracker_OnTaskDeleted(Birko.TimeTracker.Entities.Task task)
+        {
+            this.RefreshTaskList();
         }
 
         void tracker_OnTaskEnded(Birko.TimeTracker.Entities.Task task)
@@ -84,7 +90,7 @@ namespace TimeTracker
         {
             IEnumerable<Birko.TimeTracker.Entities.Task> tasks = tracker.Tasks.GetTasks(t=>t.Start >= this.startTime).OrderBy(t=> t.Start);
             this.dataGridTasks.DataContext = tasks;
-            if (tasks != null && tasks.Count() > 1)
+            if (tasks != null && tasks.Count() > 0)
             {
                 this.labelTotalTime.Content = new TimeSpan(tasks.Sum(t => t.Duration.Ticks)).ToString("c");
             }
@@ -122,7 +128,42 @@ namespace TimeTracker
         {
             OverviewWindow window = new OverviewWindow();
             window.Tracker = this.tracker;
+            window.Owner = this;
             window.Show();
+        }
+
+        private void newTaskMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TaskWindow window = new TaskWindow();
+            window.Tracker = this.tracker;
+            window.Owner = this;
+            window.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (this.dataGridTasks.SelectedItem != null)
+            {
+                Birko.TimeTracker.Entities.Task task = (this.dataGridTasks.SelectedItem as Birko.TimeTracker.Entities.Task);
+                TaskWindow window = new TaskWindow();
+                window.Task = task;
+                if (this.tracker.ActiveTask != null)
+                {
+                    window.Tags = this.tracker.Tasks.GetTags(task);
+                }
+                window.Tracker = this.tracker;
+                window.Owner = this;
+                window.Show();
+            }
+        }
+
+        private void buttonRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.dataGridTasks.SelectedItem != null)
+            {
+                Birko.TimeTracker.Entities.Task task = (this.dataGridTasks.SelectedItem as Birko.TimeTracker.Entities.Task);
+                this.tracker.RemoveTask(task);
+            }
         }
     }
 }

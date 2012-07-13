@@ -8,6 +8,7 @@ namespace Birko.TimeTracker
 {
     public delegate void TaskStarted(Entities.Task task);
     public delegate void TaskEnded(Entities.Task task);
+    public delegate void TaskDeleted(Entities.Task task);
 
     public class Tracker
     {
@@ -17,6 +18,7 @@ namespace Birko.TimeTracker
         public Birko.TimeTracker.Entities.Task ActiveTask { get; protected set; }
         public event TaskStarted OnTaskStarted = null;
         public event TaskEnded OnTaskEnded = null;
+        public event TaskDeleted OnTaskDeleted = null;
 
         protected EntityManagement.EntityManager EntityManager { get; set; }
 
@@ -32,7 +34,10 @@ namespace Birko.TimeTracker
         {
             if (this.ActiveTask != null)
             {
-                this.EndTask(this.ActiveTask);
+                if (this.ActiveTask.ID != task.ID)
+                {
+                    this.EndTask(this.ActiveTask);
+                }
             }
             this.StartTask(task);
         }
@@ -68,6 +73,23 @@ namespace Birko.TimeTracker
         public void TagTask(Entities.Task task, IEnumerable<Entities.Tag> tags)
         {
             this.Tasks.Tag(task, tags);
+            if (OnTaskStarted != null)
+            {
+                this.OnTaskStarted(this.ActiveTask);
+            }
+        }
+
+        public void RemoveTask(Entities.Task task)
+        {
+            if (this.ActiveTask!= null && this.ActiveTask.ID == task.ID)
+            {
+                this.EndTask(task);
+            }
+            this.Tasks.DeleteTask(task);
+            if (this.OnTaskDeleted != null)
+            {
+                this.OnTaskDeleted(task);
+            }
         }
     }
 }

@@ -40,9 +40,8 @@ namespace Birko.TimeTracker.DbContext
                 context.SaveChanges();
             }
             this.context = null;
-            return newCategory;
+            return this.GetCategory(newCategory.ID);
         }
-
 
         public override Entities.Category UpdateCategory(Entities.Category category)
         {
@@ -60,7 +59,7 @@ namespace Birko.TimeTracker.DbContext
                 }
             }
             this.context = null;
-            return newCategory;
+            return this.GetCategory(newCategory.ID);
         }
 
         public override Entities.Category DeleteCategory(Entities.Category category)

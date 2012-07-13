@@ -58,12 +58,10 @@ namespace Birko.TimeTracker
                 if (testTask == null)
                 {
                     newTask = manager.CreateTask(task);
-                    manager.TagTask(newTask, task.Tags);
                 }
                 else
                 {
                     newTask = manager.UpdateTask(task);
-                    manager.TagTask(newTask, task.Tags);
                 }
             }
             return newTask;
@@ -75,6 +73,26 @@ namespace Birko.TimeTracker
             {
                 manager.TagTask(task, tags);
             }
+        }
+
+        public IEnumerable<Entities.Tag> GetTags(Entities.Task task)
+        {
+            IEnumerable<Entities.Tag> result = new List<Entities.Tag>();
+            using (EntityManagement.TaskManager manager = this.EntityManager.GetTaskManager())
+            {
+                result = manager.GetTaskTags(task);
+            }
+            return result;
+        }
+
+        internal Entities.Task DeleteTask(Entities.Task task)
+        {
+            Entities.Task result = null;
+            using (EntityManagement.TaskManager manager = this.EntityManager.GetTaskManager())
+            {
+                result = manager.DeleteTask(task);
+            }
+            return result;
         }
     }
 }

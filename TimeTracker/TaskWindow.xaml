@@ -1,0 +1,233 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="TimeTracker.TaskWindow"
+        Title="TaskWindow" Height="306" Width="537" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="38*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="labelTaskName" Content="Task:" Margin="3" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <Label x:Name="labelTaskDuration" Content="Tags:" Grid.Column="1" Grid.Row="0" Margin="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox HorizontalAlignment="Stretch" Margin="3" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" x:Name="textBoxTask" ToolTip="Project name" MaxLines="1" />
+        <TextBox HorizontalAlignment="Stretch" Margin="3" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" x:Name="textBoxTags" ToolTip="Tags" MaxLines="1"/>
+        <Label x:Name="labelTaskStart" Content="Start:" Margin="3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <Label x:Name="labelTaskEnd" Content="End:" Grid.Column="1" Grid.Row="2" Margin="3,3,205,3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <Grid HorizontalAlignment="Stretch" Height="Auto" Margin="0" Grid.Row="3" VerticalAlignment="Stretch" Width="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="comboBoxHourStart" Grid.Column="1" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+                <System:Int32>0</System:Int32>
+                <System:Int32>1</System:Int32>
+                <System:Int32>2</System:Int32>
+                <System:Int32>3</System:Int32>
+                <System:Int32>4</System:Int32>
+                <System:Int32>5</System:Int32>
+                <System:Int32>6</System:Int32>
+                <System:Int32>7</System:Int32>
+                <System:Int32>8</System:Int32>
+                <System:Int32>9</System:Int32>
+                <System:Int32>10</System:Int32>
+                <System:Int32>11</System:Int32>
+                <System:Int32>12</System:Int32>
+                <System:Int32>13</System:Int32>
+                <System:Int32>14</System:Int32>
+                <System:Int32>15</System:Int32>
+                <System:Int32>16</System:Int32>
+                <System:Int32>17</System:Int32>
+                <System:Int32>18</System:Int32>
+                <System:Int32>19</System:Int32>
+                <System:Int32>20</System:Int32>
+                <System:Int32>21</System:Int32>
+                <System:Int32>22</System:Int32>
+                <System:Int32>23</System:Int32>
+            </ComboBox>
+            <ComboBox x:Name="comboBoxMinuteStart" Grid.Column="3" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+                <System:Int32>0</System:Int32>
+                <System:Int32>1</System:Int32>
+                <System:Int32>2</System:Int32>
+                <System:Int32>3</System:Int32>
+                <System:Int32>4</System:Int32>
+                <System:Int32>5</System:Int32>
+                <System:Int32>6</System:Int32>
+                <System:Int32>7</System:Int32>
+                <System:Int32>8</System:Int32>
+                <System:Int32>9</System:Int32>
+                <System:Int32>10</System:Int32>
+                <System:Int32>11</System:Int32>
+                <System:Int32>12</System:Int32>
+                <System:Int32>13</System:Int32>
+                <System:Int32>14</System:Int32>
+                <System:Int32>15</System:Int32>
+                <System:Int32>16</System:Int32>
+                <System:Int32>17</System:Int32>
+                <System:Int32>18</System:Int32>
+                <System:Int32>19</System:Int32>
+                <System:Int32>20</System:Int32>
+                <System:Int32>21</System:Int32>
+                <System:Int32>22</System:Int32>
+                <System:Int32>23</System:Int32>
+                <System:Int32>24</System:Int32>
+                <System:Int32>25</System:Int32>
+                <System:Int32>26</System:Int32>
+                <System:Int32>27</System:Int32>
+                <System:Int32>28</System:Int32>
+                <System:Int32>29</System:Int32>
+                <System:Int32>30</System:Int32>
+                <System:Int32>31</System:Int32>
+                <System:Int32>32</System:Int32>
+                <System:Int32>33</System:Int32>
+                <System:Int32>34</System:Int32>
+                <System:Int32>35</System:Int32>
+                <System:Int32>36</System:Int32>
+                <System:Int32>37</System:Int32>
+                <System:Int32>38</System:Int32>
+                <System:Int32>39</System:Int32>
+                <System:Int32>40</System:Int32>
+                <System:Int32>41</System:Int32>
+                <System:Int32>42</System:Int32>
+                <System:Int32>43</System:Int32>
+                <System:Int32>44</System:Int32>
+                <System:Int32>45</System:Int32>
+                <System:Int32>46</System:Int32>
+                <System:Int32>47</System:Int32>
+                <System:Int32>48</System:Int32>
+                <System:Int32>49</System:Int32>
+                <System:Int32>50</System:Int32>
+                <System:Int32>51</System:Int32>
+                <System:Int32>52</System:Int32>
+                <System:Int32>53</System:Int32>
+                <System:Int32>54</System:Int32>
+                <System:Int32>55</System:Int32>
+                <System:Int32>56</System:Int32>
+                <System:Int32>57</System:Int32>
+                <System:Int32>58</System:Int32>
+                <System:Int32>59</System:Int32>
+            </ComboBox>
+            <DatePicker x:Name="datePickerStart" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch"/>
+            <Label Content=":" HorizontalAlignment="Stretch" Margin="0" Grid.Column="2" VerticalAlignment="Stretch" Background="#00000000"/>
+        </Grid>
+        <Grid HorizontalAlignment="Stretch" Height="Auto" Margin="0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" Width="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="comboBoxHourEnd" Grid.Column="1" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+                <System:Int32>0</System:Int32>
+                <System:Int32>1</System:Int32>
+                <System:Int32>2</System:Int32>
+                <System:Int32>3</System:Int32>
+                <System:Int32>4</System:Int32>
+                <System:Int32>5</System:Int32>
+                <System:Int32>6</System:Int32>
+                <System:Int32>7</System:Int32>
+                <System:Int32>8</System:Int32>
+                <System:Int32>9</System:Int32>
+                <System:Int32>10</System:Int32>
+                <System:Int32>11</System:Int32>
+                <System:Int32>12</System:Int32>
+                <System:Int32>13</System:Int32>
+                <System:Int32>14</System:Int32>
+                <System:Int32>15</System:Int32>
+                <System:Int32>16</System:Int32>
+                <System:Int32>17</System:Int32>
+                <System:Int32>18</System:Int32>
+                <System:Int32>19</System:Int32>
+                <System:Int32>20</System:Int32>
+                <System:Int32>21</System:Int32>
+                <System:Int32>22</System:Int32>
+                <System:Int32>23</System:Int32>
+            </ComboBox>
+            <ComboBox x:Name="comboBoxMinuteEnd" Grid.Column="3" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+                <System:Int32>0</System:Int32>
+                <System:Int32>1</System:Int32>
+                <System:Int32>2</System:Int32>
+                <System:Int32>3</System:Int32>
+                <System:Int32>4</System:Int32>
+                <System:Int32>5</System:Int32>
+                <System:Int32>6</System:Int32>
+                <System:Int32>7</System:Int32>
+                <System:Int32>8</System:Int32>
+                <System:Int32>9</System:Int32>
+                <System:Int32>10</System:Int32>
+                <System:Int32>11</System:Int32>
+                <System:Int32>12</System:Int32>
+                <System:Int32>13</System:Int32>
+                <System:Int32>14</System:Int32>
+                <System:Int32>15</System:Int32>
+                <System:Int32>16</System:Int32>
+                <System:Int32>17</System:Int32>
+                <System:Int32>18</System:Int32>
+                <System:Int32>19</System:Int32>
+                <System:Int32>20</System:Int32>
+                <System:Int32>21</System:Int32>
+                <System:Int32>22</System:Int32>
+                <System:Int32>23</System:Int32>
+                <System:Int32>24</System:Int32>
+                <System:Int32>25</System:Int32>
+                <System:Int32>26</System:Int32>
+                <System:Int32>27</System:Int32>
+                <System:Int32>28</System:Int32>
+                <System:Int32>29</System:Int32>
+                <System:Int32>30</System:Int32>
+                <System:Int32>31</System:Int32>
+                <System:Int32>32</System:Int32>
+                <System:Int32>33</System:Int32>
+                <System:Int32>34</System:Int32>
+                <System:Int32>35</System:Int32>
+                <System:Int32>36</System:Int32>
+                <System:Int32>37</System:Int32>
+                <System:Int32>38</System:Int32>
+                <System:Int32>39</System:Int32>
+                <System:Int32>40</System:Int32>
+                <System:Int32>41</System:Int32>
+                <System:Int32>42</System:Int32>
+                <System:Int32>43</System:Int32>
+                <System:Int32>44</System:Int32>
+                <System:Int32>45</System:Int32>
+                <System:Int32>46</System:Int32>
+                <System:Int32>47</System:Int32>
+                <System:Int32>48</System:Int32>
+                <System:Int32>49</System:Int32>
+                <System:Int32>50</System:Int32>
+                <System:Int32>51</System:Int32>
+                <System:Int32>52</System:Int32>
+                <System:Int32>53</System:Int32>
+                <System:Int32>54</System:Int32>
+                <System:Int32>55</System:Int32>
+                <System:Int32>56</System:Int32>
+                <System:Int32>57</System:Int32>
+                <System:Int32>58</System:Int32>
+                <System:Int32>59</System:Int32>
+            </ComboBox>
+            <DatePicker x:Name="datePickerEnd" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" IsEnabled="{Binding IsChecked, ElementName=checkBoxSetEnd}"/>
+            <Label Content=":" HorizontalAlignment="Stretch" Margin="0" Grid.Column="2" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" />
+        </Grid>
+        <Grid Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" Margin="0" Grid.Row="6" VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="buttonSave" Content="Save" Grid.Column="1" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Click="buttonSave_Click"/>
+        </Grid>
+        <Label x:Name="labelTaskdescription" Content="Description:" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox x:Name="textBoxDescription" HorizontalAlignment="Stretch" Height="Auto" Margin="3" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="2"/>
+        <CheckBox x:Name="checkBoxSetEnd" Content="Set end" Grid.Column="1" HorizontalAlignment="Left" Margin="79,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="93"/>
+    </Grid>
+</Window>

@@ -40,7 +40,7 @@ namespace Birko.TimeTracker.DbContext
                 context.SaveChanges();
             }
             this.context = null;
-            return newTag;
+            return this.GetTag(newTag.ID);
         }
 
         public override Entities.Tag UpdateTag(Entities.Tag tag)
@@ -58,7 +58,7 @@ namespace Birko.TimeTracker.DbContext
                 }
             }
             this.context = null;
-            return newTag;
+            return this.GetTag(newTag.ID);
         }
 
         public override Entities.Tag DeleteTag(Entities.Tag tag)

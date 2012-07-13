@@ -38,17 +38,55 @@ namespace Birko.TimeTracker.Entities
 
         private TimeSpan GetDuration()
         {
-            if (Start != null && End != null)
+            if (Start.HasValue && End.HasValue)
             {
                 return End.Value - Start.Value;
             }
-            else if (Start != null && End == null)
+            else if (Start.HasValue)
             {
                 return DateTime.UtcNow - Start.Value;
             }
             else 
             {
                 return new TimeSpan(0);
+            }
+        }
+
+        public DateTime? LocalStart
+        {
+            get 
+            {
+                if (this.Start.HasValue)
+                {
+                    return this.Start.Value.ToLocalTime();
+                }
+                return null;
+            }
+            set 
+            {
+                if (value.HasValue)
+                {
+                    this.Start = value.Value.ToUniversalTime();
+                }
+            }
+        }
+
+        public DateTime? LocalEnd
+        {
+            get
+            {
+                if (this.End.HasValue)
+                {
+                    return this.End.Value.ToLocalTime();
+                }
+                return null;
+            }
+            set
+            {
+                if (value.HasValue)
+                {
+                    this.End = value.Value.ToUniversalTime();
+                }
             }
         }
     }

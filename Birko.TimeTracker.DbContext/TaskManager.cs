@@ -83,6 +83,9 @@ namespace Birko.TimeTracker.DbContext
                             }
                         }
                     }
+                    context.SaveChanges();
+                    newTask = this.GetTask(newTask.ID);
+                    List<Entities.Tag> removeTags = new List<Entities.Tag>();
                     foreach (Entities.Tag tag in newTask.Tags)
                     {
                         if (tags.FirstOrDefault(t => t.ID == tag.ID) == null)
@@ -90,11 +93,19 @@ namespace Birko.TimeTracker.DbContext
                             Entities.Tag removeTag = context.Tags.FirstOrDefault(t => t.ID == tag.ID);
                             if (removeTag != null)
                             {
-                                newTask.Tags.Remove(removeTag);
+                                removeTags.Add(removeTag);
                             }
                         }
                     }
-                    context.SaveChanges();
+                    if (removeTags.Count > 0)
+                    { 
+                        foreach (Entities.Tag tag in removeTags)
+                        {
+                            newTask.Tags.Remove(tag);
+                        }
+                        context.SaveChanges();
+                    }
+                    
                 }
             }
             this.context = null;
@@ -109,7 +120,7 @@ namespace Birko.TimeTracker.DbContext
                 newTask = context.Tasks.FirstOrDefault(t => t.ID == task.ID);
                 if (newTask != null)
                 {
-                    context.Tasks.Remove(task);
+                    context.Tasks.Remove(newTask);
                     //tags ?
                     //Categories ?
 
@@ -138,6 +149,22 @@ namespace Birko.TimeTracker.DbContext
                 }
                 this.context = null;
             }
+        }
+
+        public override IEnumerable<Entities.Tag> GetTaskTags(Entities.Task task)
+        {
+            Entities.Task newTask = null;
+            IEnumerable<Entities.Tag> result = new List<Entities.Tag>(); 
+            using (TimeTrackerDbContext context = this.GetContext())
+            {
+                newTask = context.Tasks.FirstOrDefault(t => t.ID == task.ID);
+                if (newTask != null)
+                {
+                   result = newTask.Tags.ToList();
+                }
+            }
+            this.context = null;
+            return result;
         }
     }
 }
