@@ -41,7 +41,7 @@ namespace Birko.TimeTracker.DbContext
                 context.SaveChanges();
             }
             this.context = null;
-            return newTask;
+            return this.GetTask(newTask.ID);
         }
 
         public override Entities.Task UpdateTask(Entities.Task task)
@@ -57,19 +57,11 @@ namespace Birko.TimeTracker.DbContext
                     newTask.Name = task.Name;
                     newTask.Description = task.Description;
                     newTask.Start = task.Start;
-                    //tags 
-                    foreach(Entities.Tag tag in task.Tags)
-                    {
-                        if (newTask.Tags.FirstOrDefault(t => t.ID == tag.ID) == null)
-                        {
-                            newTask.Tags.Add(tag);
-                        }
-                    }
                     context.SaveChanges();
                 }
             }
             this.context = null;
-            return newTask;
+            return this.GetTask(newTask.ID);
         }
 
         public override Entities.Task TagTask(Entities.Task task, IEnumerable<Entities.Tag> tags)
@@ -84,10 +76,21 @@ namespace Birko.TimeTracker.DbContext
                     {
                         if (newTask.Tags.FirstOrDefault(t => t.ID == tag.ID) == null)
                         {
-                            Entities.Tag addTagg = context.Tags.FirstOrDefault(t => t.ID == tag.ID);
-                            if(addTagg != null)
+                            Entities.Tag addTag = context.Tags.FirstOrDefault(t => t.ID == tag.ID);
+                            if(addTag != null)
                             {
-                                newTask.Tags.Add(addTagg);
+                                newTask.Tags.Add(addTag);
+                            }
+                        }
+                    }
+                    foreach (Entities.Tag tag in newTask.Tags)
+                    {
+                        if (tags.FirstOrDefault(t => t.ID == tag.ID) == null)
+                        {
+                            Entities.Tag removeTag = context.Tags.FirstOrDefault(t => t.ID == tag.ID);
+                            if (removeTag != null)
+                            {
+                                newTask.Tags.Remove(removeTag);
                             }
                         }
                     }
@@ -95,7 +98,7 @@ namespace Birko.TimeTracker.DbContext
                 }
             }
             this.context = null;
-            return newTask;
+            return this.GetTask(newTask.ID);
         }
 
         public override Entities.Task DeleteTask(Entities.Task task)

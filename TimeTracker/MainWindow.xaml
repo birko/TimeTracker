@@ -53,7 +53,7 @@
         <Menu HorizontalAlignment="Stretch" Height="Auto" Margin="3" VerticalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="3">
             <MenuItem Header="Activity" VerticalContentAlignment="Center">
                 <MenuItem Header="New Task" VerticalContentAlignment="Center"/>
-                <MenuItem Header="Overview" VerticalContentAlignment="Center"/>
+                <MenuItem x:Name="overviewMenuItem" Header="Overview" VerticalContentAlignment="Center" Click="overviewMenuItem_Click"/>
             </MenuItem>
         </Menu>
     </Grid>

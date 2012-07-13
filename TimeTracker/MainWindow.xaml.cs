@@ -117,5 +117,12 @@ namespace TimeTracker
                 }
             }
         }
+
+        private void overviewMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OverviewWindow window = new OverviewWindow();
+            window.Tracker = this.tracker;
+            window.Show();
+        }
     }
 }

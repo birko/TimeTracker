@@ -58,10 +58,12 @@ namespace Birko.TimeTracker
                 if (testTask == null)
                 {
                     newTask = manager.CreateTask(task);
+                    manager.TagTask(newTask, task.Tags);
                 }
                 else
                 {
                     newTask = manager.UpdateTask(task);
+                    manager.TagTask(newTask, task.Tags);
                 }
             }
             return newTask;
