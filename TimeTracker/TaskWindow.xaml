@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="comboBoxHourStart" Grid.Column="1" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+            <ComboBox x:Name="comboBoxHourStart" Grid.Column="1" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto" ItemStringFormat="00">
                 <System:Int32>0</System:Int32>
                 <System:Int32>1</System:Int32>
                 <System:Int32>2</System:Int32>
@@ -56,7 +56,7 @@
                 <System:Int32>22</System:Int32>
                 <System:Int32>23</System:Int32>
             </ComboBox>
-            <ComboBox x:Name="comboBoxMinuteStart" Grid.Column="3" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+            <ComboBox x:Name="comboBoxMinuteStart" Grid.Column="3" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto" ItemStringFormat="00">
                 <System:Int32>0</System:Int32>
                 <System:Int32>1</System:Int32>
                 <System:Int32>2</System:Int32>
@@ -128,7 +128,7 @@
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="comboBoxHourEnd" Grid.Column="1" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+            <ComboBox x:Name="comboBoxHourEnd" Grid.Column="1" IsEnabled="{Binding IsChecked, ElementName=checkBoxSetEnd}" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto" ItemStringFormat="00">
                 <System:Int32>0</System:Int32>
                 <System:Int32>1</System:Int32>
                 <System:Int32>2</System:Int32>
@@ -154,7 +154,7 @@
                 <System:Int32>22</System:Int32>
                 <System:Int32>23</System:Int32>
             </ComboBox>
-            <ComboBox x:Name="comboBoxMinuteEnd" Grid.Column="3" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+            <ComboBox x:Name="comboBoxMinuteEnd" IsEnabled="{Binding IsChecked, ElementName=checkBoxSetEnd}" Grid.Column="3" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" Width="Auto" Height="Auto" ItemStringFormat="00">
                 <System:Int32>0</System:Int32>
                 <System:Int32>1</System:Int32>
                 <System:Int32>2</System:Int32>
@@ -217,7 +217,7 @@
                 <System:Int32>59</System:Int32>
             </ComboBox>
             <DatePicker x:Name="datePickerEnd" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" IsEnabled="{Binding IsChecked, ElementName=checkBoxSetEnd}"/>
-            <Label Content=":" HorizontalAlignment="Stretch" Margin="0" Grid.Column="2" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" />
+            <Label Content=":" HorizontalAlignment="Stretch" Margin="0" Grid.Column="2" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Width="auto" Height="auto" IsEnabled="{Binding IsChecked, ElementName=checkBoxSetEnd}"/>
         </Grid>
         <Grid Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" Margin="0" Grid.Row="6" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
@@ -228,6 +228,6 @@
         </Grid>
         <Label x:Name="labelTaskdescription" Content="Description:" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
         <TextBox x:Name="textBoxDescription" HorizontalAlignment="Stretch" Height="Auto" Margin="3" Grid.Row="5" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="2"/>
-        <CheckBox x:Name="checkBoxSetEnd" Content="Set end" Grid.Column="1" HorizontalAlignment="Left" Margin="79,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="93"/>
+        <CheckBox x:Name="checkBoxSetEnd" Content="Set end" Grid.Column="1" HorizontalAlignment="Left" Margin="79,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="93" Checked="checkBoxSetEnd_Checked"/>
     </Grid>
 </Window>

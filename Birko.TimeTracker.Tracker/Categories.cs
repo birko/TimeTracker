@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Birko.TimeTracker
+namespace Birko.TimeTracker.Tracker
 {
     public class Categories
     {
-        private EntityManagement.EntityManager EntityManager { get; set;  }
+        private EntityManagement.EntityManager EntityManager { get; set; }
 
         public Categories(EntityManagement.EntityManager entityManager)
         {

@@ -22,7 +22,7 @@ namespace TimeTracker
         private Birko.TimeTracker.Entities.Task task = null;
         private IEnumerable<Birko.TimeTracker.Entities.Tag> tags = null;
 
-        public Birko.TimeTracker.Tracker Tracker { get; set; }
+        public Birko.TimeTracker.Tracker.Tracker Tracker { get; set; }
 
         public IEnumerable<Birko.TimeTracker.Entities.Tag> Tags
         {
@@ -37,7 +37,7 @@ namespace TimeTracker
                     {
                         if (!start)
                         {
-                            this.textBoxTags.Text += "; ";
+                            this.textBoxTags.Text += ", ";
                         }
                         else
                         {
@@ -82,9 +82,12 @@ namespace TimeTracker
             this.datePickerStart.SelectedDate = DateTime.Now.Date;
             this.comboBoxHourStart.SelectedItem = DateTime.Now.Hour;
             this.comboBoxMinuteStart.SelectedItem = DateTime.Now.Minute;
-            this.datePickerEnd.SelectedDate = DateTime.Now.Date;
-            this.comboBoxHourEnd.SelectedItem = DateTime.Now.Hour;
-            this.comboBoxMinuteEnd.SelectedItem = DateTime.Now.Minute;
+            if (this.checkBoxSetEnd.IsChecked == true)
+            {
+                this.datePickerEnd.SelectedDate = DateTime.Now.Date;
+                this.comboBoxHourEnd.SelectedItem = DateTime.Now.Hour;
+                this.comboBoxMinuteEnd.SelectedItem = DateTime.Now.Minute;
+            }
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
@@ -104,13 +107,13 @@ namespace TimeTracker
                 this.task.Name = names[0];
                 if (this.datePickerStart.SelectedDate.HasValue )
                 {
-                    this.task.Start = new DateTime(this.datePickerStart.SelectedDate.Value.Year, this.datePickerStart.SelectedDate.Value.Month, this.datePickerStart.SelectedDate.Value.Day, (int)this.comboBoxHourStart.SelectedItem, (int)this.comboBoxHourStart.SelectedItem, 0).ToUniversalTime();
+                    this.task.Start = new DateTime(this.datePickerStart.SelectedDate.Value.Year, this.datePickerStart.SelectedDate.Value.Month, this.datePickerStart.SelectedDate.Value.Day, (int)this.comboBoxHourStart.SelectedItem, (int)this.comboBoxMinuteStart.SelectedItem, 0).ToUniversalTime();
                 }
                 if (this.checkBoxSetEnd.IsChecked == true)
                 {
                     if (this.datePickerEnd.SelectedDate.HasValue)
                     {
-                        this.task.End = new DateTime(this.datePickerEnd.SelectedDate.Value.Year, this.datePickerEnd.SelectedDate.Value.Month, this.datePickerEnd.SelectedDate.Value.Day, (int)this.comboBoxHourEnd.SelectedItem, (int)this.comboBoxHourEnd.SelectedItem, 0).ToUniversalTime();
+                        this.task.End = new DateTime(this.datePickerEnd.SelectedDate.Value.Year, this.datePickerEnd.SelectedDate.Value.Month, this.datePickerEnd.SelectedDate.Value.Day, (int)this.comboBoxHourEnd.SelectedItem, (int)this.comboBoxMinuteEnd.SelectedItem, 0).ToUniversalTime();
                     }
                 }
 
@@ -130,6 +133,16 @@ namespace TimeTracker
                 this.Tracker.SwitchTask(this.task);
                 this.Tracker.TagTask(task, tags);
                 this.Close();
+            }
+        }
+
+        private void checkBoxSetEnd_Checked(object sender, RoutedEventArgs e)
+        {
+            if (this.checkBoxSetEnd.IsChecked == true)
+            {
+                this.datePickerEnd.SelectedDate = DateTime.Now.Date;
+                this.comboBoxHourEnd.SelectedItem = DateTime.Now.Hour;
+                this.comboBoxMinuteEnd.SelectedItem = DateTime.Now.Minute;
             }
         }
     }

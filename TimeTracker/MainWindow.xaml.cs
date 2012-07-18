@@ -20,14 +20,14 @@ namespace TimeTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Birko.TimeTracker.Tracker tracker = null;
+        private Birko.TimeTracker.Tracker.Tracker tracker = null;
         private DateTime startTime = DateTime.UtcNow.Date;
 
         public MainWindow()
         {
             InitializeComponent();
             Birko.TimeTracker.DbContext.EntityManager manager  = new Birko.TimeTracker.DbContext.EntityManager("Data Source=timetracker.sdf", "System.Data.SqlServerCe.4.0");
-            this.tracker = new Birko.TimeTracker.Tracker(manager);
+            this.tracker = new Birko.TimeTracker.Tracker.Tracker(manager);
             this.tracker.OnTaskStarted += tracker_OnTaskStarted;
             this.tracker.OnTaskEnded += tracker_OnTaskEnded;
             this.tracker.OnTaskDeleted += tracker_OnTaskDeleted;
@@ -84,6 +84,8 @@ namespace TimeTracker
                 tracker.SwitchTask(task);
                 tracker.TagTask(task, tags);
             }
+            this.textBoxTags.Text = string.Empty;
+            this.textBoxTask.Text = string.Empty;
         }
 
         private void RefreshTaskList()
@@ -164,6 +166,31 @@ namespace TimeTracker
                 Birko.TimeTracker.Entities.Task task = (this.dataGridTasks.SelectedItem as Birko.TimeTracker.Entities.Task);
                 this.tracker.RemoveTask(task);
             }
+        }
+
+        private void dataGridTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.dataGridTasks.SelectedItem != null)
+            {
+                Birko.TimeTracker.Entities.Task selectedTask = (this.dataGridTasks.SelectedItem as Birko.TimeTracker.Entities.Task);
+                Birko.TimeTracker.Entities.Task task = this.tracker.Tasks.NewTask();
+                task.Name = selectedTask.Name;
+                task.Start = DateTime.UtcNow;
+                task.CategoryID = selectedTask.CategoryID;
+                List<Birko.TimeTracker.Entities.Tag> tags = new List<Birko.TimeTracker.Entities.Tag>();
+                IEnumerable <Birko.TimeTracker.Entities.Tag> taskTags =  this.tracker.Tasks.GetTags(selectedTask);
+                foreach (Birko.TimeTracker.Entities.Tag tag in taskTags)
+                {
+                    tags.Add(tag);
+                }
+                tracker.SwitchTask(task);
+                tracker.TagTask(task, tags);
+            }
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.RefreshTaskList();
         }
     }
 }

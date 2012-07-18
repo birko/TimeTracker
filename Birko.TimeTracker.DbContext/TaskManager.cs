@@ -109,7 +109,7 @@ namespace Birko.TimeTracker.DbContext
                 }
             }
             this.context = null;
-            return this.GetTask(newTask.ID);
+            return (newTask != null) ? this.GetTask(newTask.ID) : null;
         }
 
         public override Entities.Task DeleteTask(Entities.Task task)
@@ -131,9 +131,14 @@ namespace Birko.TimeTracker.DbContext
             return newTask;
         }
 
-        public override IEnumerable<Entities.Task> GetTasks()
+        public override IEnumerable<Entities.Task> GetTasks(System.Linq.Expressions.Expression<Func<Entities.Task, bool>> predicate)
         {
-            return this.GetContext().Tasks.Include("Category").Include("Tags");
+            IQueryable<Entities.Task> result = this.GetContext().Tasks.Include("Category").Include("Tags");
+            if(predicate != null)
+            {
+                result = result.Where(predicate);
+            }
+            return result.AsEnumerable();
         }
 
         public override void Dispose()

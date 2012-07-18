@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Birko.TimeTracker
+namespace Birko.TimeTracker.Tracker
 {
     public class Tags
     {
@@ -32,3 +31,4 @@ namespace Birko.TimeTracker
         }
     }
 }
+

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Birko.TimeTracker.Entities
 {
@@ -19,9 +16,9 @@ namespace Birko.TimeTracker.Entities
         public virtual Category Category { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
 
-        public TimeSpan Duration 
+        public TimeSpan Duration
         {
-            get 
+            get
             {
                 return this.GetDuration();
             }
@@ -46,7 +43,7 @@ namespace Birko.TimeTracker.Entities
             {
                 return DateTime.UtcNow - Start.Value;
             }
-            else 
+            else
             {
                 return new TimeSpan(0);
             }
@@ -54,7 +51,7 @@ namespace Birko.TimeTracker.Entities
 
         public DateTime? LocalStart
         {
-            get 
+            get
             {
                 if (this.Start.HasValue)
                 {
@@ -62,7 +59,7 @@ namespace Birko.TimeTracker.Entities
                 }
                 return null;
             }
-            set 
+            set
             {
                 if (value.HasValue)
                 {
@@ -91,3 +88,4 @@ namespace Birko.TimeTracker.Entities
         }
     }
 }
+

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Birko.TimeTracker.EntityManagement
 {
@@ -19,7 +18,12 @@ namespace Birko.TimeTracker.EntityManagement
 
         public abstract Entities.Task DeleteTask(Entities.Task task);
 
-        public abstract IEnumerable<Entities.Task> GetTasks();
+        public virtual IEnumerable<Entities.Task> GetTasks()
+        {
+            return this.GetTasks(null);
+        }
+
+        public abstract IEnumerable<Entities.Task> GetTasks(System.Linq.Expressions.Expression<Func<Entities.Task, bool>> predicate);
 
         public virtual Entities.Task GetTask(Guid id)
         {

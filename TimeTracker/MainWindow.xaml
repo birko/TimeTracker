@@ -26,12 +26,12 @@
         <TextBox HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTask" ToolTip="Project name" MaxLines="1" />
         <TextBox HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Name="textBoxTags" ToolTip="Tags" MaxLines="1"/>
         <Button Content="Switch task" Grid.Column="2" HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" Width="Auto" Name="buttonSwitchTask" Click="buttonSwitchTask_Click"/>
-        <DataGrid x:Name="dataGridTasks" ItemsSource="{Binding Mode=OneWay}" HorizontalAlignment="Stretch" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Height="Auto" Width="Auto" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single">
+        <DataGrid x:Name="dataGridTasks" ItemsSource="{Binding Mode=OneWay}" HorizontalAlignment="Stretch" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Height="Auto" Width="Auto" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" MouseDoubleClick="dataGridTasks_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="columnStart" Binding="{Binding LocalStart}" Header="Start" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="columnEnd" Binding="{Binding LocalEnd}" Header="End" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="columnStart" Binding="{Binding LocalStart, StringFormat='dd.MM.yyyy HH:mm'}" Header="Start" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="columnEnd" Binding="{Binding LocalEnd, StringFormat='dd.MM.yyyy HH:mm'}" Header="End" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="columnFullName" Binding="{Binding FullName}" Header="Task" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="columnDuration" Binding="{Binding Duration}" Header="Time" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="columnDuration" Binding="{Binding Duration, StringFormat='c'}" Header="Time" IsReadOnly="True"/>
                 <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -51,10 +51,11 @@
         <Label x:Name="labelTotalTimeText" Content="Total time:" Grid.Column="1" Grid.Row="5" Margin="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
         <Label x:Name="labelTotalTime" Content="" Grid.Column="2" Grid.Row="5" Margin="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
         <Menu HorizontalAlignment="Stretch" Height="Auto" Margin="3" VerticalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="3">
-            <MenuItem Header="Activity" VerticalContentAlignment="Center">
+            <MenuItem x:Name="menuItemActivity" Header="Activity" VerticalContentAlignment="Center">
                 <MenuItem x:Name="newTaskMenuItem" Header="New Task" VerticalContentAlignment="Center" Click="newTaskMenuItem_Click"/>
                 <MenuItem x:Name="overviewMenuItem" Header="Overview" VerticalContentAlignment="Center" Click="overviewMenuItem_Click"/>
             </MenuItem>
+            <MenuItem x:Name="menuItemRefresh" Header="Refresh" Click="MenuItem_Click_1"/>
         </Menu>
     </Grid>
 </Window>
