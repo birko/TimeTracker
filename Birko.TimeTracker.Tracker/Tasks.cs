@@ -207,5 +207,15 @@ namespace Birko.TimeTracker.Tracker
             }
             return result;
         }
+
+        public Entities.Task EditTask(Entities.Task task)
+        {
+            Entities.Task result = null;
+            using (EntityManagement.TaskManager manager = this.EntityManager.GetTaskManager())
+            {
+                result = manager.UpdateTask(task);
+            }
+            return result;
+        }
     }
 }

@@ -29,5 +29,56 @@ namespace Birko.TimeTracker.Tracker
             }
             return category;
         }
+
+        public IEnumerable<Entities.Category> GetCategories()
+        {
+            return this.GetCategories(null);
+        }
+
+        public IEnumerable<Entities.Category> GetCategories(System.Linq.Expressions.Expression<Func<Entities.Category, bool>> predicate)
+        {
+            List<Entities.Category> list = new List<Entities.Category>();
+            using (EntityManagement.CategoryManager manager = this.EntityManager.GetCategoryManager())
+            {
+                IEnumerable<Entities.Category> loaded = manager.GetCategories(predicate);
+                foreach (Entities.Category category in loaded)
+                {
+                    list.Add(category);
+                }
+
+            }
+            return list;
+        }
+
+        public IEnumerable<Entities.Task> GetTasks(Entities.Category category)
+        {
+            List<Entities.Task> list = new List<Entities.Task>();
+            using (EntityManagement.CategoryManager manager = this.EntityManager.GetCategoryManager())
+            {
+                Entities.Category loaded = manager.GetCategory(category.ID);
+                list = loaded.Tasks.ToList();
+            }
+            return list;
+        }
+
+        public Entities.Category DeleteCategory(Entities.Category category)
+        {
+            Entities.Category result = null;
+            using (EntityManagement.CategoryManager manager = this.EntityManager.GetCategoryManager())
+            {
+                result = manager.DeleteCategory(category);
+            }
+            return result;
+        }
+
+        public Entities.Category EditCategory(Entities.Category category)
+        {
+            Entities.Category result = null;
+            using (EntityManagement.CategoryManager manager = this.EntityManager.GetCategoryManager())
+            {
+                result = manager.UpdateCategory(category);
+            }
+            return result;
+        }
     }
 }

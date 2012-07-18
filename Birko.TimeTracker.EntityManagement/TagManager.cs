@@ -18,7 +18,13 @@ namespace Birko.TimeTracker.EntityManagement
 
         public abstract Entities.Tag DeleteTag(Entities.Tag tag);
 
-        public abstract IEnumerable<Entities.Tag> GetTags();
+        public virtual IEnumerable<Entities.Tag> GetTags()
+        {
+            return this.GetTags(null);
+        }
+
+        public abstract IEnumerable<Entities.Tag> GetTags(System.Linq.Expressions.Expression<Func<Entities.Tag, bool>> predicate);
+
 
         public virtual Entities.Tag GetTag(Guid id)
         {

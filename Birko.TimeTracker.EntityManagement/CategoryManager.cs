@@ -18,7 +18,12 @@ namespace Birko.TimeTracker.EntityManagement
 
         public abstract Entities.Category DeleteCategory(Entities.Category category);
 
-        public abstract IEnumerable<Entities.Category> GetCategories();
+        public virtual IEnumerable<Entities.Category> GetCategories()
+        {
+            return this.GetCategories(null);
+        }
+
+        public abstract IEnumerable<Entities.Category> GetCategories(System.Linq.Expressions.Expression<Func<Entities.Category, bool>> predicate);
 
         public virtual Entities.Category GetCategory(Guid id)
         {

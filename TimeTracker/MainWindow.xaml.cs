@@ -192,5 +192,23 @@ namespace TimeTracker
         {
             this.RefreshTaskList();
         }
+
+        private void editTagMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TagWindow window = new TagWindow();
+            window.Owner = this;
+            window.Tracker = this.tracker;
+            window.ShowDialog();
+            this.RefreshTaskList();
+        }
+
+        private void editCategoryMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryWindow window = new CategoryWindow();
+            window.Owner = this;
+            window.Tracker = this.tracker;
+            window.ShowDialog();
+            this.RefreshTaskList();
+        }
     }
 }

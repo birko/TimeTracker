@@ -81,8 +81,13 @@ namespace Birko.TimeTracker.Tracker
 
         public void TagTask(Entities.Task task, IEnumerable<Entities.Tag> tags)
         {
+            this.TagTask(task, tags, true);
+        }
+
+        public void TagTask(Entities.Task task, IEnumerable<Entities.Tag> tags, bool runEvent)
+        {
             this.Tasks.Tag(task, tags);
-            if (OnTaskStarted != null)
+            if (runEvent && OnTaskStarted != null)
             {
                 this.OnTaskStarted(this.ActiveTask);
             }

@@ -20,7 +20,7 @@ namespace TimeTracker
     public partial class OverviewWindow : Window
     {
         public Birko.TimeTracker.Tracker.Tracker Tracker { get; set; }
-        private DateTime startTime = DateTime.UtcNow.Date;
+        private DateTime startTime = DateTime.Now.Date.ToUniversalTime();
 
         public OverviewWindow()
         {
@@ -29,8 +29,29 @@ namespace TimeTracker
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
+            if (this.Tracker != null)
+            {
+                this.Tracker.OnTaskDeleted += Tracker_OnTaskDeleted;
+                this.Tracker.OnTaskStarted += Tracker_OnTaskStarted;
+                this.Tracker.OnTaskEnded += Tracker_OnTaskEnded;
+            }
             this.RefreshInterval();
             this.comboBoxInterval.SelectedIndex = 0;
+        }
+
+        void Tracker_OnTaskEnded(Birko.TimeTracker.Entities.Task task)
+        {
+            this.RefreshData();
+        }
+
+        void Tracker_OnTaskStarted(Birko.TimeTracker.Entities.Task task)
+        {
+            this.RefreshData();
+        }
+
+        void Tracker_OnTaskDeleted(Birko.TimeTracker.Entities.Task task)
+        {
+            this.RefreshData();
         }
 
 
@@ -41,8 +62,8 @@ namespace TimeTracker
 
                 IntervalDate interval = (this.comboBoxInterval.SelectedItem as IntervalDate);
                 IEnumerable<Birko.TimeTracker.Entities.Task> tasks = Tracker.Tasks.GetTasks(
-                    t => t.Start >= interval.Date.Date &&
-                    (!t.End.HasValue|| (t.End.HasValue && t.End.Value < interval.NextDate.Date))
+                    t => t.Start >= interval.Date &&
+                    ((!t.End.HasValue && t.Start < interval.NextDate) || (t.End.HasValue && t.End.Value < interval.NextDate))
                 );
 
                 decimal sumtotal = (decimal)tasks.Sum(t => t.Duration.TotalHours);
@@ -113,7 +134,7 @@ namespace TimeTracker
             this.comboBoxInterval.Items.Clear();
             this.comboBoxInterval.Items.Add(new IntervalDate() { 
                  Label = "Day",
-                 Date = this.startTime.Date,
+                 Date = this.startTime,
                  Delay = 1
             });
 
@@ -146,7 +167,7 @@ namespace TimeTracker
             this.comboBoxInterval.Items.Add(week);
             IntervalDate month = new IntervalDate() { Label = "Month", Date = new DateTime(this.startTime.Year, this.startTime.Month, 1), DateFormat = "MM.yyyy", DelayType = DelayType.Month};
             this.comboBoxInterval.Items.Add(month);
-            IntervalDate year = new IntervalDate() { Label = "Year", Date = new DateTime(this.startTime.Year, this.startTime.Month, 1), DateFormat = "yyyy", DelayType = DelayType.Year };
+            IntervalDate year = new IntervalDate() { Label = "Year", Date = new DateTime(this.startTime.Year, 1, 1), DateFormat = "yyyy", DelayType = DelayType.Year };
             this.comboBoxInterval.Items.Add(year);
             if (custom != null)
             {
@@ -180,7 +201,7 @@ namespace TimeTracker
                 Birko.TimeTracker.Entities.Task task = this.Tracker.Tasks.GetFirstTask();
                 if(task != null)
                 {
-                    this.startTime = task.Start.Value.Date;
+                    this.startTime = task.Start.Value;
                     this.RefreshInterval();
                 }
             }
@@ -199,7 +220,7 @@ namespace TimeTracker
                     }
                     else
                     {
-                        this.startTime = DateTime.UtcNow.Date;
+                        this.startTime = DateTime.Now.Date.ToUniversalTime();
                     }
                     this.RefreshInterval();
                 }
@@ -217,8 +238,7 @@ namespace TimeTracker
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
-
-            this.startTime = DateTime.UtcNow.Date;
+            this.startTime = DateTime.Now.Date.ToUniversalTime();
             this.RefreshInterval();
         }
 
@@ -227,12 +247,23 @@ namespace TimeTracker
             IntervalWindow window = new IntervalWindow();
             window.Owner = this;
             window.StartDate = this.startTime;
+            window.EndDate = this.startTime;
             if (window.ShowDialog() == true)
             {
-                int delay = (int)(window.EndDate.Value.AddDays(1).Date - window.StartDate.Value.Date).TotalDays;
-                IntervalDate custom = new IntervalDate() { Label = "Custom", Date = window.StartDate.Value.ToUniversalTime().Date, DateFormat = "dd.MM.yyyy", DelayType = DelayType.Day, Delay= delay };
+                int delay = (int)(window.EndDate.Value.AddDays(1) - window.StartDate.Value).TotalDays;
+                IntervalDate custom = new IntervalDate() { Label = "Custom", Date = window.StartDate.Value.Date.ToUniversalTime(), DateFormat = "dd.MM.yyyy", DelayType = DelayType.Day, Delay= delay };
                 this.comboBoxInterval.Items.Add(custom);
                 this.comboBoxInterval.SelectedIndex = this.comboBoxInterval.Items.Count - 1;
+            }
+        }
+
+        private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (this.Tracker != null)
+            {
+                this.Tracker.OnTaskDeleted -= Tracker_OnTaskDeleted;
+                this.Tracker.OnTaskStarted -= Tracker_OnTaskStarted;
+                this.Tracker.OnTaskEnded -= Tracker_OnTaskEnded;
             }
         }
     }
