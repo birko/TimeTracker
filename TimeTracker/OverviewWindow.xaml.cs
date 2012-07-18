@@ -229,7 +229,7 @@ namespace TimeTracker
             window.StartDate = this.startTime;
             if (window.ShowDialog() == true)
             {
-                int delay = (window.EndDate.Value.AddDays(1).Date - window.StartDate.Value.Date).Days;
+                int delay = (int)(window.EndDate.Value.AddDays(1).Date - window.StartDate.Value.Date).TotalDays;
                 IntervalDate custom = new IntervalDate() { Label = "Custom", Date = window.StartDate.Value.ToUniversalTime().Date, DateFormat = "dd.MM.yyyy", DelayType = DelayType.Day, Delay= delay };
                 this.comboBoxInterval.Items.Add(custom);
                 this.comboBoxInterval.SelectedIndex = this.comboBoxInterval.Items.Count - 1;
