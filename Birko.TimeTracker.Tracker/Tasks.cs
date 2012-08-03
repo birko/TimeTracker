@@ -29,7 +29,7 @@ namespace Birko.TimeTracker.Tracker
             return this.GetTasks(null);
         }
 
-        public IEnumerable<Entities.Task> GetTasks(System.Linq.Expressions.Expression<Func<Entities.Task, bool>> predicate)
+        public IEnumerable<Entities.Task> GetTasks(Func<Entities.Task, bool> predicate)
         {
             List<Entities.Task> tasks = new List<Entities.Task>();
             using (EntityManagement.TaskManager manager = this.EntityManager.GetTaskManager())

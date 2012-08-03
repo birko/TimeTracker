@@ -131,9 +131,9 @@ namespace Birko.TimeTracker.DbContext
             return newTask;
         }
 
-        public override IEnumerable<Entities.Task> GetTasks(System.Linq.Expressions.Expression<Func<Entities.Task, bool>> predicate)
+        public override IEnumerable<Entities.Task> GetTasks(Func<Entities.Task, bool> predicate)
         {
-            IQueryable<Entities.Task> result = this.GetContext().Tasks.Include("Category").Include("Tags");
+            IEnumerable<Entities.Task> result = this.GetContext().Tasks.Include("Category").Include("Tags");
             if(predicate != null)
             {
                 result = result.Where(predicate);

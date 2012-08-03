@@ -23,7 +23,7 @@ namespace Birko.TimeTracker.EntityManagement
             return this.GetTasks(null);
         }
 
-        public abstract IEnumerable<Entities.Task> GetTasks(System.Linq.Expressions.Expression<Func<Entities.Task, bool>> predicate);
+        public abstract IEnumerable<Entities.Task> GetTasks(Func<Entities.Task, bool> predicate);
 
         public virtual Entities.Task GetTask(Guid id)
         {

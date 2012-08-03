@@ -35,7 +35,7 @@ namespace Birko.TimeTracker.Tracker
             return this.GetCategories(null);
         }
 
-        public IEnumerable<Entities.Category> GetCategories(System.Linq.Expressions.Expression<Func<Entities.Category, bool>> predicate)
+        public IEnumerable<Entities.Category> GetCategories(Func<Entities.Category, bool> predicate)
         {
             List<Entities.Category> list = new List<Entities.Category>();
             using (EntityManagement.CategoryManager manager = this.EntityManager.GetCategoryManager())

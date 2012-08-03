@@ -80,9 +80,9 @@ namespace Birko.TimeTracker.DbContext
             return newCategory;
         }
 
-        public override IEnumerable<Entities.Category> GetCategories(System.Linq.Expressions.Expression<Func<Entities.Category, bool>> predicate)
+        public override IEnumerable<Entities.Category> GetCategories(Func<Entities.Category, bool> predicate)
         {
-            IQueryable<Entities.Category> result = this.GetContext().Categories;
+            IEnumerable<Entities.Category> result = this.GetContext().Categories;
             if (predicate != null)
             {
                 result = result.Where(predicate);

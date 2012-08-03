@@ -23,7 +23,7 @@ namespace Birko.TimeTracker.EntityManagement
             return this.GetCategories(null);
         }
 
-        public abstract IEnumerable<Entities.Category> GetCategories(System.Linq.Expressions.Expression<Func<Entities.Category, bool>> predicate);
+        public abstract IEnumerable<Entities.Category> GetCategories(Func<Entities.Category, bool> predicate);
 
         public virtual Entities.Category GetCategory(Guid id)
         {
