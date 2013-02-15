@@ -23,7 +23,7 @@ namespace Birko.TimeTracker.EntityManagement
             return this.GetTags(null);
         }
 
-        public abstract IEnumerable<Entities.Tag> GetTags(System.Linq.Expressions.Expression<Func<Entities.Tag, bool>> predicate);
+        public abstract IEnumerable<Entities.Tag> GetTags(Func<Entities.Tag, bool> predicate);
 
 
         public virtual Entities.Tag GetTag(Guid id)

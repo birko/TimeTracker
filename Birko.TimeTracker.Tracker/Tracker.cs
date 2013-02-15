@@ -31,16 +31,13 @@ namespace Birko.TimeTracker.Tracker
 
         public void SwitchTask(Entities.Task task)
         {
-            if (this.ActiveTask != null)
+            if (this.ActiveTask != null && this.ActiveTask.ID != task.ID && !task.End.HasValue)
             {
-                if (this.ActiveTask.ID != task.ID && !task.End.HasValue)
-                {
-                    this.EndTask(this.ActiveTask);
-                }
-                else
-                {
-                    this.Tasks.SaveTask(task);
-                }
+                this.EndTask(this.ActiveTask);
+            }
+            else
+            {
+                this.Tasks.SaveTask(task);
             }
             if (!task.End.HasValue)
             {

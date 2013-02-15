@@ -79,9 +79,9 @@ namespace Birko.TimeTracker.DbContext
             return newTag;
         }
 
-        public override IEnumerable<Entities.Tag> GetTags(System.Linq.Expressions.Expression<Func<Entities.Tag, bool>> predicate)
+        public override IEnumerable<Entities.Tag> GetTags(Func<Entities.Tag, bool> predicate)
         {
-            IQueryable<Entities.Tag> tags = this.GetContext().Tags;
+            IEnumerable<Entities.Tag> tags = this.GetContext().Tags;
             if (predicate != null)
             {
                 tags = tags.Where(predicate);

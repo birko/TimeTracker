@@ -35,7 +35,7 @@ namespace Birko.TimeTracker.Tracker
             return this.GetTags(null);
         }
 
-        public IEnumerable<Entities.Tag> GetTags(System.Linq.Expressions.Expression<Func<Entities.Tag, bool>> predicate)
+        public IEnumerable<Entities.Tag> GetTags(Func<Entities.Tag, bool> predicate)
         {
             List<Entities.Tag> tags = new List<Entities.Tag>();
             using (EntityManagement.TagManager manager = this.EntityManager.GetTagManager())
